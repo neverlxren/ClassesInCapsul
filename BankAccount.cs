@@ -1,6 +1,6 @@
 using ClassesInCapsul;
 
-namespace ExampleOOP;
+namespace ClassesInCapsul.Models;
 
 public class BankAccount
 {
@@ -11,6 +11,16 @@ public class BankAccount
     public bool IsPinVerified { get; set; }
     public decimal Balance { get; set; }
     public string Pin { get; set; }
+
+    public BankAccount()
+    {
+        IsCardValid = true;
+        IsPinVerified = true;
+        Balance = 0;
+        Pin = Convert.ToString(Random.Shared.Next(100, 999));
+        
+    }
+    
     
     public void InsertCard()
     {
@@ -81,10 +91,12 @@ public class BankAccount
         }
     }
 
-    public bool Transfer(string targetAccount, decimal amount)
-    {
-        throw new NotImplementedException();
-    }
+    
+    // TODO: after agregation
+    // public bool Transfer(string targetAccount, decimal amount)
+    // {
+    //     throw new NotImplementedException();
+    // }
 
     public void ChangePin()
     {
@@ -96,8 +108,15 @@ public class BankAccount
         throw new NotImplementedException();
     }
     
+    
+    // TODO: afrer destctuct
     public void Logout()
     {
+    }
+
+    public void showBalance()
+    {
+        Console.WriteLine(Balance);
     }
 
 
@@ -119,25 +138,13 @@ public class BankAccount
                 continue;
             }
             
-
             switch (choice)
             {
-                case 1: //смотрим баланс
-                    
-                case 2: //функция депозита, вводим сумму
-                   
-                 
-                    break;
-                case 3:
-                   
-                    break;
-                case 4 :
-                    Logout();
-                    break;
-                
-                case 5:
-                    return;
-
+                case 1: showBalance(); break;
+                case 2: Deposit(); break;
+                case 3: Withdraw(); break;
+                case 4: Logout(); break;
+                case 5: return;
                 default: Logout(); break;
             }
         }
